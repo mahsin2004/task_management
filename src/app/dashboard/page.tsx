@@ -36,7 +36,7 @@ const page = () => {
         <div className="mt-3">
           <Dialog>
             <DialogTrigger asChild>
-              <Button className="w-full">Add Task</Button>
+              <Button className="w-full py-6">Add Task</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
