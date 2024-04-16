@@ -12,8 +12,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
-const page = () => {
+const page = async() => {
+  const session = await getServerSession(authOptions);
+
+  if (!session) redirect("/");
   return (
     <div className="grid items-start grid-cols-3 gap-4 p-[22px]">
       <div className="col-span-1 bg-[#EEF2F5] rounded-md p-4 border-[#e3eaf5] border-[1.5px]">

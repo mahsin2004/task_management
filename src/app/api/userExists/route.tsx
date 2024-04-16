@@ -8,8 +8,8 @@ export async function POST(req:NextResponse) {
         method: "GET"
       });
 
-    
-    return NextResponse.json({ user });
+      const User  = await user.json();
+    return NextResponse.json({ User });
   } catch (error) {
     console.log(error);
   }

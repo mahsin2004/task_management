@@ -14,11 +14,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Link from "next/link";
 
 const RightNavbar: FC = () => {
   const { data: session } = useSession();
-  console.log(session?.user)
   return (
     <div className="p-[22px] flex gap-4 w-full justify-end border-b-[1.5px] border-[#EAEEF4]">
       <Button className="h-12 rounded-full">
@@ -37,24 +35,12 @@ const RightNavbar: FC = () => {
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-5">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuLabel>{session?.user?.email}</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>{session?.user?.name}</DropdownMenuItem>
-          <DropdownMenuItem>{session?.user?.email}</DropdownMenuItem>
-          <DropdownMenuItem>Team</DropdownMenuItem>
-          <DropdownMenuItem>Subscription</DropdownMenuItem>
+          {/* <DropdownMenuItem>{session?.user?.name}</DropdownMenuItem> */}
         </DropdownMenuContent>
       </DropdownMenu>
-      {!session ? (
-            <>
-              <Link href="/">
-                <li>Login</li>
-              </Link>
-              <Link href="/register">
-                <li>Register</li>
-              </Link>
-            </>
-          ) : (
+      {session && (
             <>
               <li>
                 <button

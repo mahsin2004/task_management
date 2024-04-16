@@ -27,8 +27,8 @@ export const authOptions: any = {
           if (!passwordsMatch) {
             return null;
           }
-      
-          return user[0];
+          const User = user[0];
+          return User;
         } catch (error) {
           console.error("Error: ", error);
           throw error;

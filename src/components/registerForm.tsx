@@ -34,7 +34,7 @@ export default function RegisterForm() {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-     const User = {
+     const userInfo = {
       username: name,
       email: email,
       avatarUrl: avatar,
@@ -51,20 +51,20 @@ export default function RegisterForm() {
         body: JSON.stringify({ email }),
       });
 
-      const { user } = await resUserExists.json();
-      console.log("user: ", user);
+      const { User } = await resUserExists.json();
+      
 
-      if (user) {
+      if (User[0]?.email === email) {
         setError("User already exists.");
         return;
       }
     
-      const res = await fetch("api/register", {
+      const res = await fetch("http://localhost:3001/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(User)
+        body: JSON.stringify(userInfo),
       });
 
       if (res.ok) {
