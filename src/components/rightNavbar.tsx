@@ -14,6 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { MdLogout } from "react-icons/md";
 
 const RightNavbar: FC = () => {
   const { data: session } = useSession();
@@ -27,7 +28,7 @@ const RightNavbar: FC = () => {
         <IoMdNotificationsOutline className="text-2xl text-[#7E92A2]" />
       </div>
 
-      <DropdownMenu >
+      <DropdownMenu>
         <DropdownMenuTrigger className="rounded-full">
           <Avatar className="w-12 h-12 ">
             <AvatarImage src="https://i.postimg.cc/XYQrcrrr/mahsinmia1.jpg" />
@@ -35,25 +36,23 @@ const RightNavbar: FC = () => {
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-5">
-          <DropdownMenuLabel>{session?.user?.email}</DropdownMenuLabel>
+          <DropdownMenuLabel>My Profile</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          {/* <DropdownMenuItem>{session?.user?.name}</DropdownMenuItem> */}
+          <DropdownMenuItem>{session?.user?.email}</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       {session && (
-            <>
-              <li>
-                <button
-                  onClick={() => {
-                    signOut();
-                  }}
-                  className="p-2 px-5 -mt-1 bg-blue-800 rounded-full"
-                >
-                  Logout
-                </button>
-              </li>
-            </>
-          )}
+        <>
+          <button
+            onClick={() => {
+              signOut();
+            }}
+            className="w-12 h-12 rounded-full border-[#EAEEF4] border-[1.5px] flex items-center justify-center bg-white"
+          >
+            <MdLogout className="text-2xl text-[#7E92A2]" />
+          </button>
+        </>
+      )}
     </div>
   );
 };
